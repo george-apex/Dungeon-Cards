@@ -677,7 +677,7 @@ const Game = {
         const enemies = Combat.state.enemies.filter(e => e.hp > 0);
         
         let totalWidth = 0;
-        const enemySpacing = 50;
+        const enemySpacing = 100;
         const enemySizes = enemies.map(enemy => {
             const size = UI.getEnemySpriteSize(enemy) * (enemy.isBoss ? 1 : (enemy.size || 1));
             totalWidth += size + enemySpacing;

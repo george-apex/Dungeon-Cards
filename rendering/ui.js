@@ -960,7 +960,8 @@ const UI = {
         
         ctx.restore();
         
-        this.drawEnemyHPBar(enemy, drawX + (actualSize - 80) / 2, drawY + actualSize + 5);
+        const hpBarWidth = Math.max(60, Math.min(80, actualSize));
+        this.drawEnemyHPBar(enemy, drawX + (actualSize - hpBarWidth) / 2, drawY + actualSize + 5, actualSize);
         
         if (enemy.intent) {
             this.drawEnemyIntent(enemy.intent, x + actualSize / 2, y - 30, intentHovered);
@@ -969,9 +970,9 @@ const UI = {
         this.drawEnemyStatusEffects(enemy, x, y - 60);
     },
     
-    drawEnemyHPBar(enemy, x, y) {
+    drawEnemyHPBar(enemy, x, y, spriteWidth = 80) {
         const ctx = this.ctx;
-        const w = 80;
+        const w = Math.max(60, Math.min(80, spriteWidth));
         const h = 12;
         
         ctx.save();

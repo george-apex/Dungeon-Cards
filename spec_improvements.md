@@ -466,3 +466,18 @@ This document tracks changes/improvements made to the Dungeon Cards game that sh
   - `attackAndSteal` action: Damage + steal in one move
   - Killing enemy returns all stolen gold to player
   - Only Mimic has steal moves (Act 2) to avoid early-game frustration
+
+### Bug Fix: Enemy HP bars overlapping and block not working
+- **File**: `game.js`, `rendering/ui.js`, `systems/combat.js`
+- **Issue**: 
+  - Enemy HP bars overlapped when multiple enemies present (spacing based on sprite size, not HP bar width)
+  - HP bar extended beyond sprite bounds for smaller enemies
+  - Enemy block was never reset at start of enemy turn, causing block to persist incorrectly
+- **Fix**:
+  - Increased enemy spacing from 50px to 100px to prevent HP bar overlap
+  - Made HP bar width scale with sprite size (60-80px range)
+  - Added `enemy.block = 0` at start of `executeEnemyTurn()` to reset block each enemy turn
+- **Spec Improvement**: Enemy HP bars and block:
+  - Spacing should account for HP bar width (80px), not just sprite size
+  - HP bar width should be clamped to sprite width range
+  - Enemy block resets at start of their turn (like player block resets at start of player turn)

@@ -509,6 +509,8 @@ const Combat = {
         this.state.enemies.forEach(enemy => {
             if (enemy.hp <= 0) return;
             
+            enemy.block = 0;
+            
             this.processStatusEffects(enemy, 'start');
             
             if (enemy.statusEffects.stun) {
